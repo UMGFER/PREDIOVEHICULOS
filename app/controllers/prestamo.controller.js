@@ -8,7 +8,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Prestamo
 exports.create = (req, res) => {
     // Validamos que dentro del  request no venga vacio el nombre, de lo contrario returna error
-    if (!req.body.nombre) {
+    if (!req.body.fecha_inicio) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -42,8 +42,8 @@ exports.create = (req, res) => {
 
 // Retrieve all Prestamo from the database.
 exports.findAll = (req, res) => {
-    const nombre = req.query.nombre;
-    var condition = nombre ? { nombre: { [Op.iLike]: `%${nombre}%` } } : null;
+    const fecha_inicio = req.query.fecha_inicio;
+    var condition = fecha_inicio ? { fecha_inicio: { [Op.iLike]: `%${fecha_inicio}%` } } : null;
 
     Prestamo.findAll({ where: condition })
         .then(data => {
@@ -97,11 +97,11 @@ exports.update = (req, res) => {
         });
 };
 
-// Delete a Client with the specified id in the request
+// Delete a prestamo with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
     // utilizamos el metodo destroy para eliminar el objeto mandamos la condicionante where id = parametro que recibimos 
-    Cliente.destroy({
+    Prestamo.destroy({
         where: { id: id }
     })
         .then(num => {
@@ -122,9 +122,9 @@ exports.delete = (req, res) => {
         });
 };
 
-// Delete all Clients from the database.
+// Delete all pretamos from the database.
 exports.deleteAll = (req, res) => {
-    Cliente.destroy({
+    Prestamo.destroy({
         where: {},
         truncate: false
     })
@@ -141,7 +141,7 @@ exports.deleteAll = (req, res) => {
 
 // find all active Prestamo, basado en el atributo status vamos a buscar que solo los clientes activos
 exports.findAllStatus = (req, res) => {
-    Cliente.findAll({ where: { status: true } })
+    Prestamo.findAll({ where: { status: true } })
         .then(data => {
             res.send(data);
         })
