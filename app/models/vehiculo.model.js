@@ -27,7 +27,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         disponible:{
-            type: Sequelize.DATE
+            type: Sequelize.STRING
         }
     });
     return Vehiculo;
