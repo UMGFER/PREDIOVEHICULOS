@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
 // usamos el sequelize.defina para "definir" el nombre de la entity en la BD, en este caso "cliente"
 // Usamos type.Sequelize para definir el tipo de datos de cada atributo de la entidad 
     const Vehiculo = sequelize.define("vehiculo", {
-        id_vehiculp:{
+        id_vehiculo:{
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
